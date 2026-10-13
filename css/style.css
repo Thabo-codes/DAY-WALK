@@ -56,9 +56,9 @@ main {
 }
 
 .product img {
-    width: 100px !important;
+    width: 10px !important;
     height: 80px !important;
-    max-width: 100px !important;
+    max-width: 10px !important;
     max-height: 80px !important;
     object-fit: contain !important;
     display: block !important;
