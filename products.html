@@ -1,56 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Day Walk - Products</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DAY WALK | Shop Shoes Online</title>
+    <meta name="description" content="Explore stylish and comfortable footwear at DAY WALK.">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<header>
-    <h1>DAY WALK</h1>
-    <p>Step Into Your Style</p>
-</header>
+    <header>
+        <h1>DAY WALK</h1>
+        <p>STEP INTO YOUR STYLE</p>
+    </header>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-</nav>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About Us</a>
+        <a href="enquiry.html">Enquiries</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 
-<main>
-    <h2>Our Shoes</h2>
+    <main>
 
-    <div class="products">
-         
+        <section class="hero">
+            <h2>Find Your Perfect Pair.</h2>
+            <p>Fresh styles. Everyday comfort. Affordable prices.</p>
+        </section>
 
-        <div class="product">
-            <img src="images/shoe1.jpg" alt=>
-            <h3>Classic Black</h3>
-            <p>Comfortable everyday shoes.</p>
-            <p><strong>R499</strong></p>
-            <button>Buy Now</button>
-        </div>
+        <section>
+            <h2>Our Collection</h2>
+            <p>Explore our footwear collection and find a style that fits you.</p>
 
-        <div class="product">
-            <h3>Urban White</h3>
-            <p>Clean and stylish sneakers.</p>
-            <p><strong>R599</strong></p>
-            <button>Buy Now</button>
-        </div>
+            <input
+                type="text"
+                id="product-search"
+                placeholder="Search for shoes..."
+                aria-label="Search products"
+            >
 
-        <div class="product">
-            <h3>Day Walk Sport</h3>
-            <p>Perfect for active days.</p>
-            <p><strong>R699</strong></p>
-            <button>Buy Now</button>
-        </div>
+            <div class="products">
 
-    </div>
-</main>
+                <div class="product">
+                    <img
+                        src="images/shoe1.jpg"
+                        alt="Classic Black comfortable everyday shoes"
+                        width="300"
+                        height="200"
+                        loading="lazy"
+                    >
+                    <h3>Classic Black</h3>
+                    <p>Simple, timeless and perfect for everyday wear.</p>
+                    <strong>R499</strong>
+                    <br><br>
+                    <button onclick="buyProduct('Classic Black')">
+                        Buy Now
+                    </button>
+                </div>
 
-<footer>
-    <p>&copy; 2026 Day Walk</p>
-</footer>
+                <div class="product">
+                    <img
+                        src="images/shoe1.jpg"
+                        alt="Urban White stylish casual shoes"
+                        width="300"
+                        height="200"
+                        loading="lazy"
+                    >
+                    <h3>Urban White</h3>
+                    <p>A clean, modern look for any casual occasion.</p>
+                    <strong>R599</strong>
+                    <br><br>
+                    <button onclick="buyProduct('Urban White')">
+                        Buy Now
+                    </button>
+                </div>
+
+                <div class="product">
+                    <img
+                        src="images/shoe1.jpg"
+                        alt="Day Walk Sport athletic shoes"
+                        width="300"
+                        height="200"
+                        loading="lazy"
+                    >
+                    <h3>Day Walk Sport</h3>
+                    <p>Sport-inspired style for your everyday lifestyle.</p>
+                    <strong>R699</strong>
+                    <br><br>
+                    <button onclick="buyProduct('Day Walk Sport')">
+                        Buy Now
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="hero">
+            <h2>Love What You See?</h2>
+            <p>Choose your favourite pair and send us an enquiry today.</p>
+            <a href="enquiry.html" class="btn">MAKE AN ENQUIRY</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DAY WALK. All Rights Reserved.</p>
+        <p>Step Into Your Style.</p>
+    </footer>
+
+    <script src="js/main.js" defer></script>
 
 </body>
 </html>
