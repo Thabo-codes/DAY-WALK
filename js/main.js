@@ -10,17 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (searchInput && products.length > 0) {
         searchInput.addEventListener("input", function () {
-
             const searchTerm = searchInput.value.toLowerCase().trim();
 
             products.forEach(function (product) {
                 const productName = product.textContent.toLowerCase();
-
-                if (productName.includes(searchTerm)) {
-                    product.style.display = "";
-                } else {
-                    product.style.display = "none";
-                }
+                product.style.display =
+                    productName.includes(searchTerm) ? "" : "none";
             });
         });
     }
@@ -32,16 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (selectedProduct && productField) {
         productField.value = selectedProduct;
-        console.log("Selected product:", selectedProduct);
     }
 
-    // 3. ENQUIRY FORM VALIDATION
+    // 3. AJAX ENQUIRY FORM
     const form = document.getElementById("enquiry-form");
+    const status = document.getElementById("form-status");
 
     if (form) {
-
-        form.addEventListener("submit", function (event) {
-
+        form.addEventListener("submit", async function (event) {
             event.preventDefault();
 
             const name = document.getElementById("name").value.trim();
@@ -51,23 +44,58 @@ document.addEventListener("DOMContentLoaded", function () {
             const message = document.getElementById("message").value.trim();
 
             if (!name || !email || !product || !message) {
-                alert("Please complete all required fields.");
+                status.textContent = "Please complete all required fields.";
                 return;
             }
 
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert("Please enter a valid email address.");
+                status.textContent = "Please enter a valid email address.";
                 return;
             }
 
-            if (phone && !/^[0-9+ ]{10,15}$/.test(phone)) {
-                alert("Please enter a valid phone number.");
-                return;
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            status.textContent = "Sending enquiry...";
+            if (submitButton) submitButton.disabled = true;
+
+            try {
+                const response = await fetch(
+                    "https://jsonplaceholder.typicode.com/posts",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            title: name,
+                            body: message,
+                            email: email,
+                            phone: phone,
+                            product: product,
+                            userId: 1
+                        })
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Request failed");
+                }
+
+                const result = await response.json();
+
+                status.textContent =
+                    "AJAX test successful! Test response ID: " +
+                    result.id +
+                    ". This is a demonstration; enquiries are not stored or emailed.";
+
+                form.reset();
+
+            } catch (error) {
+                status.textContent =
+                    "Unable to send the test enquiry. Please check your internet connection and try again.";
+            } finally {
+                if (submitButton) submitButton.disabled = false;
             }
-
-            alert("Thank you! Your enquiry has been validated successfully.");
-
-            form.reset();
         });
     }
 
@@ -76,8 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // 4. BUY NOW FUNCTION
 function buyProduct(productName) {
-
     window.location.href = "enquiry.html?product=" +
         encodeURIComponent(productName);
-
 }
